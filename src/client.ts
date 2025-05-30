@@ -1,0 +1,6 @@
+export * from './lib/accounts/client'
+export * from './lib/attachments/client'
+export * from './lib/categories/client'
+export * from './lib/tags/client'
+export * from './lib/transactions/client'
+export * from './lib/utilities/client'
