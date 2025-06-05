@@ -1,6 +1,6 @@
-import { z } from 'zod'
+import { z } from 'zod/v4'
 
-import { moneyObjectSchema } from '../../shared/schema'
+import { moneyObjectSchema, upApiUrlSchema } from '../../shared/schema'
 import { accountIdSchema } from './account-id'
 import { accountTypeSchema } from './account-type'
 import { ownershipTypeSchema } from './ownership-type'
@@ -10,14 +10,14 @@ const accountAttributesSchema = z.object({
   accountType: accountTypeSchema,
   ownershipType: ownershipTypeSchema,
   balance: moneyObjectSchema,
-  createdAt: z.string().datetime({ offset: true }),
+  createdAt: z.iso.datetime({ offset: true }),
 })
 
 const accountRelationshipsSchema = z.object({
   transactions: z.object({
     links: z
       .object({
-        related: z.string().url(),
+        related: upApiUrlSchema,
       })
       .optional(),
   }),
@@ -25,7 +25,7 @@ const accountRelationshipsSchema = z.object({
 
 const accountLinksSchema = z
   .object({
-    self: z.string().url(),
+    self: upApiUrlSchema,
   })
   .optional()
 

@@ -23,9 +23,9 @@ const utilitiesContract = initContract().router(
     },
   },
   {
-    baseHeaders: z.object({
+    baseHeaders: {
       authorization: bearerSchema,
-    }),
+    },
     commonResponses: {
       400: apiErrorResponseSchema,
       401: apiErrorResponseSchema,

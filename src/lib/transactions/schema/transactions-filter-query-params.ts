@@ -1,14 +1,14 @@
 import { Temporal } from 'temporal-polyfill'
-import { z } from 'zod'
+import { z } from 'zod/v4'
 
 import { transactionStatusSchema } from './transaction-status'
 
 function isIsoDate(maybe: string): boolean {
-  return z.string().date().safeParse(maybe).success
+  return z.iso.date().safeParse(maybe).success
 }
 
 function isIsoDateTime(maybe: string): boolean {
-  return z.string().datetime().safeParse(maybe).success
+  return z.iso.datetime().safeParse(maybe).success
 }
 
 function stripTimezone(isoDateTime: string): string {
@@ -23,7 +23,7 @@ function transformDate(
     return undefined
   }
 
-  const safeTime = z.string().time().catch('00:00:00').parse(time)
+  const safeTime = z.iso.time().catch('00:00:00').parse(time)
 
   if (isIsoDate(value)) {
     return stripTimezone(
@@ -48,11 +48,11 @@ export const transactionsFilterQueryParamsSchema = z
     since: z
       .string()
       .optional()
-      .transform((value) => transformDate(value, '00:00:00')),
+      .overwrite((value) => transformDate(value, '00:00:00')),
     until: z
       .string()
       .optional()
-      .transform((value) => transformDate(value, '23:59:59')),
+      .overwrite((value) => transformDate(value, '23:59:59')),
     category: z.string().optional(),
     tag: z.string().optional(),
   })

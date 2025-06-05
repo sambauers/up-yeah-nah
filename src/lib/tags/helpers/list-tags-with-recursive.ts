@@ -9,9 +9,7 @@ interface Context {
 
 interface Params {
   recursive?: boolean
-  page?: Omit<PaginationQueryParams, 'size'> & {
-    size?: number
-  }
+  page?: PaginationQueryParams
 }
 
 export async function listTagsWithRecursive(

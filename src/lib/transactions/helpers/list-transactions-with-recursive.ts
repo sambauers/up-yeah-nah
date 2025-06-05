@@ -11,9 +11,7 @@ interface Params {
   recursive?: boolean
   accountId?: string
   filter?: TransactionsFilterQueryParams
-  page?: Omit<PaginationQueryParams, 'size'> & {
-    size?: number
-  }
+  page?: PaginationQueryParams
 }
 
 export async function listTransactionsWithRecursive(

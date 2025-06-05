@@ -10,9 +10,7 @@ interface Context {
 interface Params {
   recursive?: boolean
   filter?: AccountsFilterQueryParams
-  page?: Omit<PaginationQueryParams, 'size'> & {
-    size?: number
-  }
+  page?: PaginationQueryParams
 }
 
 export async function listAccountsWithRecursive(

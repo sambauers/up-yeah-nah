@@ -1,12 +1,13 @@
-import { z } from 'zod'
+import { z } from 'zod/v4'
 
+import { upApiUrlSchema } from '../../shared/schema'
 import { transactionIdSchema } from '../../transactions/schema'
 import { attachmentIdSchema } from './attachment-id'
 
 const attachmentAttributesSchema = z.object({
-  createdAt: z.string().datetime({ offset: true }).nullable(),
-  fileURL: z.string().url().nullable(),
-  fileURLExpiresAt: z.string().datetime({ offset: true }),
+  createdAt: z.iso.datetime({ offset: true }).nullable(),
+  fileURL: z.url().nullable(),
+  fileURLExpiresAt: z.iso.datetime({ offset: true }),
   fileExtension: z.string().nullable(),
   fileContentType: z.string().nullable(),
 })
@@ -19,7 +20,7 @@ const attachmentRelationshipsSchema = z.object({
     }),
     links: z
       .object({
-        related: z.string().url(),
+        related: upApiUrlSchema,
       })
       .optional(),
   }),
@@ -27,7 +28,7 @@ const attachmentRelationshipsSchema = z.object({
 
 const attachmentLinksSchema = z
   .object({
-    self: z.string().url(),
+    self: upApiUrlSchema,
   })
   .optional()
 

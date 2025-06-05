@@ -1,12 +1,12 @@
-import { z } from 'zod'
+import { z } from 'zod/v4'
 
 export const paginationQueryParamsSchema = z
   .object({
-    size: z.number().int().min(1).optional().default(100),
+    size: z.number().int().min(1).prefault(100).optional(),
     before: z.string().optional(),
     after: z.string().optional(),
   })
+  .prefault({ size: 100 })
   .optional()
-  .default({ size: 100 })
 
 export type PaginationQueryParams = z.infer<typeof paginationQueryParamsSchema>

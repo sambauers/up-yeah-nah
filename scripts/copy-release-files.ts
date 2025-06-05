@@ -1,20 +1,18 @@
 import { copyFileSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import { z } from 'zod'
+import { z } from 'zod/v4'
 
 const packagePath = resolve(__dirname, '..', 'package.json')
 
-const packageSchema = z
-  .object({
-    devDependencies: z.any(),
-    files: z.any(),
-    packageManager: z.any(),
-    scripts: z.any(),
-    main: z.string().optional(),
-    types: z.string().optional(),
-  })
-  .passthrough()
+const packageSchema = z.looseObject({
+  devDependencies: z.any(),
+  files: z.any(),
+  packageManager: z.any(),
+  scripts: z.any(),
+  main: z.string().optional(),
+  types: z.string().optional(),
+})
 
 const packageJson = packageSchema.parse(
   JSON.parse(readFileSync(packagePath).toString()),

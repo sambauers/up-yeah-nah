@@ -1,8 +1,8 @@
-import { z } from 'zod'
+import { z } from 'zod/v4'
 
 import { accountIdSchema } from '../../accounts/schema'
 import { attachmentIdSchema } from '../../attachments/schema'
-import { moneyObjectSchema } from '../../shared/schema'
+import { moneyObjectSchema, upApiUrlSchema } from '../../shared/schema'
 import { transactionIdSchema } from './transaction-id'
 import { transactionStatusSchema } from './transaction-status'
 
@@ -57,12 +57,12 @@ const transactionAttributesSchema = z.object({
   amount: moneyObjectSchema,
   foreignAmount: moneyObjectSchema.nullable(),
   cardPurchaseMethod: cardPurchaseMethodObjectSchema.nullable(),
-  settledAt: z.string().datetime({ offset: true }).nullable(),
-  createdAt: z.string().datetime({ offset: true }),
+  settledAt: z.iso.datetime({ offset: true }).nullable(),
+  createdAt: z.iso.datetime({ offset: true }),
   transactionType: z.string(),
   note: noteObjectSchema.nullable(),
   performingCustomer: customerObjectSchema.nullable(),
-  deepLinkURL: z.string().url(),
+  deepLinkURL: z.url({ protocol: /^up$/ }),
 })
 
 const transactionRelationshipsSchema = z.object({
@@ -73,7 +73,7 @@ const transactionRelationshipsSchema = z.object({
     }),
     links: z
       .object({
-        related: z.string().url(),
+        related: upApiUrlSchema,
       })
       .optional(),
   }),
@@ -86,7 +86,7 @@ const transactionRelationshipsSchema = z.object({
       .nullable(),
     links: z
       .object({
-        related: z.string().url(),
+        related: upApiUrlSchema,
       })
       .optional(),
   }),
@@ -99,8 +99,8 @@ const transactionRelationshipsSchema = z.object({
       .nullable(),
     links: z
       .object({
-        self: z.string().url(),
-        related: z.string().url().optional(),
+        self: upApiUrlSchema,
+        related: upApiUrlSchema.optional(),
       })
       .optional(),
   }),
@@ -113,7 +113,7 @@ const transactionRelationshipsSchema = z.object({
       .nullable(),
     links: z
       .object({
-        related: z.string().url(),
+        related: upApiUrlSchema,
       })
       .optional(),
   }),
@@ -126,7 +126,7 @@ const transactionRelationshipsSchema = z.object({
     ),
     links: z
       .object({
-        self: z.string().url(),
+        self: upApiUrlSchema,
       })
       .optional(),
   }),
@@ -139,7 +139,7 @@ const transactionRelationshipsSchema = z.object({
       .nullable(),
     links: z
       .object({
-        related: z.string().url(),
+        related: upApiUrlSchema,
       })
       .optional(),
   }),
@@ -147,7 +147,7 @@ const transactionRelationshipsSchema = z.object({
 
 const transactionLinksSchema = z
   .object({
-    self: z.string().url(),
+    self: upApiUrlSchema,
   })
   .optional()
 

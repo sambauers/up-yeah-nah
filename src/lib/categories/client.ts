@@ -1,5 +1,5 @@
 import { initClient, initContract } from '@ts-rest/core'
-import { z } from 'zod'
+import { z } from 'zod/v4'
 
 import {
   api404ErrorResponseSchema,
@@ -67,9 +67,9 @@ const categoriesContract = initContract().router(
     },
   },
   {
-    baseHeaders: z.object({
+    baseHeaders: {
       authorization: bearerSchema,
-    }),
+    },
     commonResponses: {
       400: apiErrorResponseSchema,
       401: apiErrorResponseSchema,

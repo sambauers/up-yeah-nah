@@ -1,5 +1,6 @@
-import { z } from 'zod'
+import { z } from 'zod/v4'
 
+import { upApiUrlSchema } from '../../shared/schema'
 import { categoryIdSchema } from './category-id'
 
 const categoryAttributesSchema = z.object({
@@ -16,7 +17,7 @@ const categoryRelationshipsSchema = z.object({
       .nullable(),
     links: z
       .object({
-        related: z.string().url(),
+        related: upApiUrlSchema,
       })
       .optional(),
   }),
@@ -29,7 +30,7 @@ const categoryRelationshipsSchema = z.object({
     ),
     links: z
       .object({
-        related: z.string().url(),
+        related: upApiUrlSchema,
       })
       .optional(),
   }),
@@ -37,7 +38,7 @@ const categoryRelationshipsSchema = z.object({
 
 const categoryLinksSchema = z
   .object({
-    self: z.string().url(),
+    self: upApiUrlSchema,
   })
   .optional()
 

@@ -1,12 +1,13 @@
-import { z } from 'zod'
+import { z } from 'zod/v4'
 
+import { upApiUrlSchema } from '../../shared/schema'
 import { tagIdSchema } from './tag-id'
 
 const tagRelationshipsSchema = z.object({
   transactions: z.object({
     links: z
       .object({
-        related: z.string().url(),
+        related: upApiUrlSchema,
       })
       .optional(),
   }),
