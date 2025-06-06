@@ -4,10 +4,13 @@
   "description": "Well-typed Helper API - TypeScript UP Bank Package",
   "packageManager": "pnpm@10.11.1",
   "scripts": {
-    "clean": "rm -rf dist",
     "lint": "eslint",
-    "build": "tsc --project tsconfig.build.json",
-    "copy-release-files": "tsx --tsconfig tsconfig.build.json scripts/copy-release-files.ts"
+    "clean": "rm -rf dist",
+    "compile": "tsc --project tsconfig.json",
+    "build": "pnpm clean && pnpm compile",
+    "copy-release-files": "tsx --tsconfig tsconfig.build.json scripts/copy-release-files.ts",
+    "package": "pnpm lint && pnpm build && pnpm run copy-release-files",
+    "release": "pnpm package && pnpm publish dist"
   },
   "dependencies": {
     "@ts-rest/core": "3.53.0-rc.1",
