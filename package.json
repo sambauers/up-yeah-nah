@@ -1,6 +1,6 @@
 {
   "name": "wha-ts-up",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Well-typed Helper API - TypeScript UP Bank Package",
   "packageManager": "pnpm@10.11.1",
   "scripts": {
