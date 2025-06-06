@@ -88,7 +88,7 @@ const result = accountSchema.safeParse({
   relationships: {
     transactions: {
       links: {
-        related: 'https://api.up.com.au/api/v1/accounts/some-uuid-that-will-pass/transactions',
+        related: 'https://api.up.com.au/api/v1/accounts/…/transactions',
       },
     },
   },
