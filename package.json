@@ -18,13 +18,17 @@
   "scripts": {
     "lint": "eslint",
     "clean": "rm -rf dist",
-    "compile": "tsc --project tsconfig.json",
+    "clean:scripts": "rm -rf ./build/scripts",
+    "compile": "swc ./src --out-dir ./dist --strip-leading-paths",
+    "compile:scripts": "swc ./scripts --out-dir ./build/scripts --strip-leading-paths",
     "build": "pnpm clean && pnpm compile",
-    "copy-release-files": "tsx --tsconfig tsconfig.build.json scripts/copy-release-files.ts",
-    "package": "pnpm lint && pnpm build && pnpm run copy-release-files",
+    "build:types": "tsc --project tsconfig.build.json --emitDeclarationOnly",
+    "copy-release-files": "pnpm clean:scripts && pnpm compile:scripts && node ./build/scripts/copy-release-files.js && pnpm clean:scripts",
+    "package": "pnpm lint && pnpm build && pnpm build:types && pnpm run copy-release-files",
     "release": "pnpm package && pnpm publish dist"
   },
   "dependencies": {
+    "@swc/helpers": "0.5.17",
     "@ts-rest/core": "3.53.0-rc.1",
     "common-tags": "1.8.2",
     "temporal-polyfill": "0.3.0",
@@ -32,6 +36,8 @@
   },
   "devDependencies": {
     "@eslint/js": "9.28.0",
+    "@swc/cli": "0.7.7",
+    "@swc/core": "1.11.31",
     "@tsconfig/node24": "24.0.1",
     "@types/common-tags": "1.8.4",
     "@types/node": "22.15.30",
@@ -40,7 +46,6 @@
     "eslint-plugin-import-x": "4.15.1",
     "eslint-plugin-prettier": "5.4.1",
     "eslint-plugin-simple-import-sort": "12.1.1",
-    "tsx": "4.19.4",
     "typescript": "5.8.3",
     "typescript-eslint": "8.33.1"
   }

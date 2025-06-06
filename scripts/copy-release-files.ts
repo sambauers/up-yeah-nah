@@ -3,7 +3,8 @@ import { resolve } from 'node:path'
 
 import { z } from 'zod/v4'
 
-const packagePath = resolve(__dirname, '..', 'package.json')
+const rootPath = resolve(__dirname, '..', '..')
+const packagePath = resolve(rootPath, 'package.json')
 
 const packageSchema = z.looseObject({
   devDependencies: z.any(),
@@ -19,7 +20,7 @@ const packageJson = packageSchema.parse(
 )
 
 // Create truncated package.json for distribution
-const distPackagePath = resolve(__dirname, '..', 'dist', 'package.json')
+const distPackagePath = resolve(rootPath, 'dist', 'package.json')
 
 delete packageJson.devDependencies
 delete packageJson.files
@@ -33,12 +34,12 @@ writeFileSync(distPackagePath, distPackageContents.concat('\n'))
 // Copy README and LICENSE
 const docFilePaths = [
   {
-    source: resolve(__dirname, '..', 'README.md'),
-    destination: resolve(__dirname, '..', 'dist', 'README.md'),
+    source: resolve(rootPath, 'README.md'),
+    destination: resolve(rootPath, 'dist', 'README.md'),
   },
   {
-    source: resolve(__dirname, '..', 'LICENSE.md'),
-    destination: resolve(__dirname, '..', 'dist', 'LICENSE.md'),
+    source: resolve(rootPath, 'LICENSE.md'),
+    destination: resolve(rootPath, 'dist', 'LICENSE.md'),
   },
 ]
 docFilePaths.forEach(({ source, destination }) => {

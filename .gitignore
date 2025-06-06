@@ -10,6 +10,7 @@ pnpm-error.log*
 
 # compilation output
 /dist
+/build
 
 # test coverage
 /coverage
