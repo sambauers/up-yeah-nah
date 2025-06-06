@@ -13,30 +13,30 @@ import {
 } from '@ts-rest/core'
 import { z } from 'zod/v4'
 
+const mutationMethodSchema = z.enum(['POST', 'PUT', 'PATCH', 'DELETE'])
+
 function isAppRouteMutation(route: AppRoute): route is AppRouteMutation {
-  return ['POST', 'PUT', 'PATCH', 'DELETE'].includes(route.method)
+  const result = mutationMethodSchema.safeParse(route.method)
+  return result.success
 }
+
+const pathParamsSchema = z.record(
+  z.union([z.string(), z.number()]),
+  z.union([z.string(), z.number()]),
+)
 
 function isPathParams(
   maybe: unknown,
 ): maybe is Record<string | number, string | number> {
-  return (
-    typeof maybe === 'object' &&
-    maybe !== null &&
-    !Array.isArray(maybe) &&
-    Object.keys(maybe).every(
-      (key) => typeof key === 'string' || typeof key === 'number',
-    ) &&
-    Object.values(maybe).every(
-      (value) => typeof value === 'string' || typeof value === 'number',
-    )
-  )
+  const result = pathParamsSchema.safeParse(maybe)
+  return result.success
 }
 
 function errorFromIssue({ message, path }: StandardSchemaV1.Issue) {
-  const pathString =
-    Array.isArray(path) && path.length > 0 ? `${path.join('.')}: ` : ''
-  return new Error(`${pathString}${message}`)
+  const pathArray = Array.isArray(path) ? path : []
+  const pathString = pathArray.map((part) => String(part)).join('.')
+  const separator = pathString ? ': ' : ''
+  return new Error(`${pathString}${separator}${message}`)
 }
 
 function aggregateErrorFromIssues(
