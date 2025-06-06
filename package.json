@@ -1,7 +1,19 @@
 {
-  "name": "wha-ts-up",
+  "name": "up-yeah-nah",
   "version": "0.0.1",
-  "description": "Well-typed Helper API - TypeScript UP Bank Package",
+  "description": "A Typescript API client and a bunch of reusable Zod schemas for the UP Bank customer API",
+  "keywords": [
+    "up bank api",
+    "typescript",
+    "zod",
+    "ts-rest"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sambauers/up-yeah-nah.git"
+  },
+  "homepage": "https://github.com/sambauers/up-yeah-nah",
+  "license": "MIT",
   "packageManager": "pnpm@10.11.1",
   "scripts": {
     "lint": "eslint",
