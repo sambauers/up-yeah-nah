@@ -1,5 +1,5 @@
 import { Temporal } from 'temporal-polyfill'
-import { z } from 'zod/v4'
+import { z } from 'zod'
 
 import { transactionStatusSchema } from './transaction-status'
 

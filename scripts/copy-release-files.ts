@@ -1,7 +1,7 @@
 import { copyFileSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import { z } from 'zod/v4'
+import { z } from 'zod'
 
 const rootPath = resolve(__dirname, '..', '..')
 const packagePath = resolve(rootPath, 'package.json')

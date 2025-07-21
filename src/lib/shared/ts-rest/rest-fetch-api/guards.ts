@@ -1,5 +1,5 @@
 import type { AppRoute, AppRouteMutation } from '@ts-rest/core'
-import { z } from 'zod/v4'
+import { z } from 'zod'
 
 const mutationMethodSchema = z.enum(['POST', 'PUT', 'PATCH', 'DELETE'])
 

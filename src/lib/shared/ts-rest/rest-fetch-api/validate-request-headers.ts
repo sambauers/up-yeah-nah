@@ -1,6 +1,6 @@
 import type { ApiFetcherArgs, StandardSchemaV1 } from '@ts-rest/core'
 import { isStandardSchema } from '@ts-rest/core'
-import { z } from 'zod/v4'
+import { z } from 'zod'
 
 import { aggregateErrorFromIssues } from './aggregate-error-from-issues'
 

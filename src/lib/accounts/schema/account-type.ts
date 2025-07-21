@@ -1,4 +1,4 @@
-import { z } from 'zod/v4'
+import { z } from 'zod'
 
 export const accountTypeSchema = z.enum(['SAVER', 'TRANSACTIONAL', 'HOME_LOAN'])
 

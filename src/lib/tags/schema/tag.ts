@@ -1,4 +1,4 @@
-import { z } from 'zod/v4'
+import { z } from 'zod'
 
 import { upApiUrlSchema } from '../../shared/schema'
 import { tagIdSchema } from './tag-id'

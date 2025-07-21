@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 export const pingMetaSchema = z.object({
-  id: z.string().uuid(),
+  id: z.uuidv4(),
   statusEmoji: z.string(),
 })
 

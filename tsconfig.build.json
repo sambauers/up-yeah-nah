@@ -4,6 +4,14 @@
     "declaration": true,
     "declarationDir": "dist/types",
     "outDir": "dist",
+    "lib": [
+      "dom",
+      "es2024",
+      "ESNext.Array",
+      "ESNext.Collection",
+      "ESNext.Iterator",
+      "ESNext.Promise"
+    ],
   },
   "include": [
     "src/**/*.ts"

@@ -1,4 +1,4 @@
-import { z } from 'zod/v4'
+import { z } from 'zod'
 
 export const tokenSchema = z.string().startsWith('up:yeah:')
 
