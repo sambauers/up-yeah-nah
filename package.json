@@ -1,6 +1,6 @@
 {
   "name": "up-yeah-nah",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Typescript API client and a bunch of reusable Zod schemas for the UP Bank customer API",
   "keywords": [
     "up bank api",
