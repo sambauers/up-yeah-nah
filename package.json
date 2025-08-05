@@ -40,7 +40,7 @@
     "@swc/core": "1.13.2",
     "@tsconfig/node24": "24.0.1",
     "@types/common-tags": "1.8.4",
-    "@types/node": "24.1.0",
+    "@types/node": "24.2.0",
     "eslint": "9.32.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-import-x": "4.16.1",
