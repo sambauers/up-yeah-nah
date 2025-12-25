@@ -28,7 +28,7 @@
     "release": "pnpm package && pnpm publish dist"
   },
   "dependencies": {
-    "@swc/helpers": "0.5.17",
+    "@swc/helpers": "0.5.18",
     "@ts-rest/core": "3.53.0-rc.1",
     "common-tags": "1.8.2",
     "temporal-polyfill": "0.3.0",
